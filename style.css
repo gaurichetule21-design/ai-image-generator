@@ -1,11 +1,9 @@
-/* Reset default browser styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styling with gradient background */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-image: url('https://www.shutterstock.com/image-photo/abstract-gradient-particle-waves-seamlessly-600nw-2544182121.jpg');
@@ -17,7 +15,6 @@ body {
     padding: 20px;
 }
 
-/* Main container - centers everything */
 .main-container {
     display: flex;
     align-items: center;
@@ -25,7 +22,6 @@ body {
     min-height: 100vh;
 }
 
-/* Container for the form and content */
 .container {
     padding: 40px;
     border: 1px solid rgba(255, 255, 255, 0.3);
@@ -38,13 +34,11 @@ body {
     -webkit-backdrop-filter: blur(10px);
 }
 
-/* Headings container */
 .headings-container {
     text-align: center;
     margin-bottom: 30px;
 }
 
-/* Main heading (h1) */
 h1 {
     color: #000080;
     font-size: 2.5rem;
@@ -58,21 +52,18 @@ h3 {
     margin-bottom: 10px;
 }
 
-/* Secondary heading */
 .heading {
     color: #318C46;
     font-size: 1.5rem;
     margin-bottom: 15px;
 }
 
-/* Sub-heading text */
 .sub-heading {
     color: #000000;
     font-size: 1rem;
     line-height: 2.0;
 }
 
-/* Information note styling */
 .note {
     background: #fff3cd;
     border: 1px solid #ffc107;
@@ -129,31 +120,26 @@ h3 {
     transition: all 0.3s ease;
 }
 
-/* Button hover effect */
 .image-generate-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(49, 140, 70, 0.4);
 }
 
-/* Button active (click) effect */
 .image-generate-btn:active {
     transform: translateY(0);
 }
 
-/* Button disabled state */
 .image-generate-btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
 }
 
-/* Image container - hidden by default */
 .image-container {
     margin-top: 30px;
     display: none;
     text-align: center;
 }
 
-/* Text above the image */
 #imageContainerText {
     color: #333;
     font-size: 1.1rem;
@@ -161,7 +147,6 @@ h3 {
     font-weight: 500;
 }
 
-/* Generated image styling */
 .my-generated-image {
     width: 100%;
     height: auto;
@@ -172,7 +157,6 @@ h3 {
     display: none;
 }
 
-/* Loading spinner */
 .spinner {
     border: 4px solid #f3f3f3;
     border-top: 4px solid #318C46;
@@ -184,7 +168,6 @@ h3 {
     display: none;
 }
 
-/* Spinner rotation animation */
 @keyframes spin {
     0% { 
         transform: rotate(0deg); 
@@ -194,7 +177,6 @@ h3 {
     }
 }
 
-/* API information box */
 .api-setup {
     background: #e3f2fd;
     border: 1px solid #2196f3;
@@ -221,7 +203,6 @@ h3 {
     color: #d32f2f;
 }
 
-/* Responsive design for mobile devices */
 @media screen and (max-width: 768px) {
     h1 {
         font-size: 2rem;
