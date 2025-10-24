@@ -1,0 +1,237 @@
+/* Reset default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling with gradient background */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-image: url('https://www.shutterstock.com/image-photo/abstract-gradient-particle-waves-seamlessly-600nw-2544182121.jpg');
+    background-color: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Main container - centers everything */
+.main-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* Container for the form and content */
+.container {
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 90%;
+    max-width: 600px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(1px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Headings container */
+.headings-container {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* Main heading (h1) */
+h1 {
+    color: #000080;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h3 {
+    color:#610F57;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+/* Secondary heading */
+.heading {
+    color: #318C46;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+/* Sub-heading text */
+.sub-heading {
+    color: #000000;
+    font-size: 1rem;
+    line-height: 2.0;
+}
+
+/* Information note styling */
+.note {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #856404;
+    font-size: 0.9rem;
+}
+
+.note strong {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Form container */
+#form-container {
+    margin: 30px 0;
+}
+
+/* Form styling */
+.my-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Input field styling */
+.form-input {
+    padding: 15px;
+    border-radius: 10px;
+    border: 2px solid #000000d2;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+/* Input field focus state */
+.form-input:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Generate button styling */
+.image-generate-btn {
+    background: linear-gradient(135deg, #7e187b 0%, #7a266f 100%);
+    color: white;
+    padding: 15px;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* Button hover effect */
+.image-generate-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(49, 140, 70, 0.4);
+}
+
+/* Button active (click) effect */
+.image-generate-btn:active {
+    transform: translateY(0);
+}
+
+/* Button disabled state */
+.image-generate-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* Image container - hidden by default */
+.image-container {
+    margin-top: 30px;
+    display: none;
+    text-align: center;
+}
+
+/* Text above the image */
+#imageContainerText {
+    color: #333;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+/* Generated image styling */
+.my-generated-image {
+    width: 100%;
+    height: auto;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+
+/* Loading spinner */
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #318C46;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+    display: none;
+}
+
+/* Spinner rotation animation */
+@keyframes spin {
+    0% { 
+        transform: rotate(0deg); 
+    }
+    100% { 
+        transform: rotate(360deg); 
+    }
+}
+
+/* API information box */
+.api-setup {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px 0;
+    color: #0d47a1;
+}
+
+.api-setup h3 {
+    margin-bottom: 10px;
+    color: #1565c0;
+}
+
+.api-setup ol {
+    margin-left: 20px;
+    line-height: 1.8;
+}
+
+.api-setup code {
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 3px;
+    color: #d32f2f;
+}
+
+/* Responsive design for mobile devices */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+
+    .container {
+        padding: 25px;
+    }
+}
