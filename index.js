@@ -6,10 +6,6 @@ const imageContainer = document.getElementById('images-visible');
 const spinner = document.getElementById('spinner');
 const generateBtn = document.getElementById('generateBtn');
 
-/**
- * Function to fetch AI-generated images from Pollinations.AI API
- * @param {string} prompt - The text prompt entered by user
- */
 async function fetchImages(prompt) {
     try {
         generateBtn.disabled = true; 
@@ -46,10 +42,6 @@ async function fetchImages(prompt) {
     }
 }
 
-/**
- * Event listener for form submission
- * Prevents default form behavior and generates image
- */
 generateImageForm.addEventListener('submit', (e) => {
     e.preventDefault(); // Prevent page reload
     
