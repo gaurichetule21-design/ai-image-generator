@@ -1,63 +1,174 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VisionSpark — AI Image Generator</title>
+  <meta name="description"
+    content="Generate AI images from text prompts, with style presets, aspect ratios, batch variations, and a saved generation history.">
 
-    <title>AI Image Generator Website</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Sora:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div class="main-container">
+  <div class="app-shell">
 
-        <div class="container">
-            
-            <div class="headings-container">
-                <h1>VisionSpark</h1>
-                <h3>"A canvas for your thoughts."</h3>
-                <h5 class="sub-heading">
-                    Enter text and generate AI images
-                </h5>
-            </div>
-
-            <div id="form-container">
-                
-                <form id="generate-image-form" class="my-form">
-                    <input 
-                        id="input-value" 
-                        placeholder="e.g., a futuristic city at sunset, cute cat wearing hat..." 
-                        type="text"
-                        class="form-input form-controls"
-                        required>
-
-                    <button 
-                        type="submit" 
-                        class="image-generate-btn form-controls"
-                        id="generateBtn">
-                        Generate Image
-                    </button>
-                </form>
-            </div>
-
-            <div id="images-visible" class="image-container">
-                <div class="spinner" id="spinner"></div>
-                
-                <p id="imageContainerText"></p>
-                
-                <img 
-                    id="generated-image" 
-                    class="my-generated-image" 
-                    src="" 
-                    alt="AI Generated Image">
-            </div>
+    <header class="app-header">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true">&#10022;</span>
+        <div>
+          <h1>VisionSpark</h1>
+          <p class="tagline">A canvas for your thoughts.</p>
         </div>
-    </div>
+      </div>
 
-    <script src="index.js"></script>
+      <button id="theme-toggle" class="icon-btn" type="button" aria-label="Switch to light theme" title="Toggle theme">
+        <span id="theme-icon" aria-hidden="true">&#127769;</span>
+      </button>
+    </header>
+
+    <main class="workspace">
+
+      <!-- Controls -->
+      <section class="panel controls-panel" aria-label="Image generation controls">
+        <form id="generate-form" novalidate>
+
+          <div class="field-group">
+            <label for="prompt-input" class="field-label">Describe your image</label>
+            <div class="prompt-field">
+              <textarea id="prompt-input" rows="3" maxlength="600"
+                placeholder="e.g. a futuristic city at sunset, a cat astronaut floating in space..."
+                required></textarea>
+              <div class="prompt-field-footer">
+                <button type="button" id="surprise-btn" class="text-btn">&#127922; Surprise me</button>
+                <span id="char-count" class="char-count">0 / 600</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <span class="field-label">Style</span>
+            <div id="style-chips" class="chip-row" role="group" aria-label="Style preset"></div>
+          </div>
+
+          <details class="advanced-settings">
+            <summary>Advanced settings</summary>
+
+            <div class="field-group">
+              <span class="field-label">Aspect ratio</span>
+              <div id="ratio-buttons" class="chip-row" role="group" aria-label="Aspect ratio"></div>
+            </div>
+
+            <div class="field-row">
+              <div class="field-group">
+                <label for="model-select" class="field-label">Model</label>
+                <select id="model-select"></select>
+              </div>
+              <div class="field-group">
+                <label for="variations-select" class="field-label">Variations</label>
+                <select id="variations-select">
+                  <option value="1">1 image</option>
+                  <option value="2">2 images</option>
+                  <option value="4">4 images</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="field-group">
+              <span class="field-label">Seed</span>
+              <div class="seed-controls">
+                <input type="number" id="seed-input" min="0" max="999999999" aria-label="Seed value">
+                <button type="button" id="randomize-seed-btn" class="icon-btn" aria-label="Randomize seed"
+                  title="Randomize seed">&#128256;</button>
+                <label class="checkbox-label" title="Reuse this exact seed instead of randomizing on each generation">
+                  <input type="checkbox" id="lock-seed-checkbox">
+                  Lock
+                </label>
+              </div>
+            </div>
+
+            <div class="toggle-row">
+              <label class="switch-label">
+                <input type="checkbox" id="enhance-toggle" checked>
+                <span>AI prompt enhancement</span>
+              </label>
+              <label class="switch-label">
+                <input type="checkbox" id="quality-boost-toggle" checked>
+                <span>Quality boost</span>
+              </label>
+            </div>
+          </details>
+
+          <div class="form-actions">
+            <button type="submit" id="generate-btn" class="primary-btn">
+              <span id="generate-btn-text">Generate</span>
+            </button>
+            <button type="button" id="cancel-btn" class="secondary-btn" hidden>Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Canvas / results -->
+      <section class="panel canvas-panel" id="canvas-panel" aria-label="Generated images">
+        <p id="status-line" class="status-line" role="status" aria-live="polite"></p>
+        <div id="canvas-empty-state" class="empty-state">
+          <p>Your generated images will appear here.</p>
+        </div>
+        <div id="results-grid" class="results-grid"></div>
+      </section>
+
+    </main>
+
+    <section class="history-section" aria-label="Generation history">
+      <div class="history-header">
+        <h2>History</h2>
+        <div class="history-controls">
+          <label class="checkbox-label">
+            <input type="checkbox" id="favorites-only-toggle">
+            Favorites only
+          </label>
+          <button type="button" id="clear-history-btn" class="text-btn danger">Clear history</button>
+        </div>
+      </div>
+      <div id="history-grid" class="history-grid"></div>
+      <p id="history-empty" class="empty-state small">No images generated yet — your generations will be saved here.</p>
+    </section>
+
+    <footer class="app-footer">
+      <p>Images generated using the free <a href="https://pollinations.ai" target="_blank"
+          rel="noopener noreferrer">Pollinations.AI</a> API. No sign-up required.</p>
+    </footer>
+  </div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="lightbox" hidden>
+    <div class="lightbox-backdrop" id="lightbox-backdrop"></div>
+    <div class="lightbox-content" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button type="button" id="lightbox-close" class="icon-btn lightbox-close" aria-label="Close preview">&#10005;</button>
+      <img id="lightbox-img" alt="">
+      <div class="lightbox-meta">
+        <p id="lightbox-prompt"></p>
+        <p id="lightbox-details" class="mono-text"></p>
+        <div class="lightbox-actions">
+          <button type="button" id="lightbox-download" class="secondary-btn">Download</button>
+          <button type="button" id="lightbox-copy-prompt" class="secondary-btn">Copy prompt</button>
+          <button type="button" id="lightbox-favorite" class="secondary-btn">&#9734; Favorite</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast-container" class="toast-container" aria-live="polite"></div>
+
+  <script src="index.js"></script>
 </body>
 
 </html>
